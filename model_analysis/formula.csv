@@ -1,0 +1,8 @@
+"","x"
+"1","lgrowth_rate ~ ldbh + TAVE + PPT + ldbh² + TAVE² + CEC + NCI_conifer + NCI_intra + NCI_deciduous + Shading + (1 | PLACE)"
+"2","lgrowth_rate ~ ldbh + ldbh² + CEC + Shading + (1 | PLACE)"
+"3","lgrowth_rate ~ ldbh + ldbh² + NCI_conifer + NCI_intra + NCI_deciduous + Shading + (1 | PLACE)"
+"4","lgrowth_rate ~ ldbh + DD5 + PPT + ldbh² + DD5² + PPT² + clay + CEC + Shading + DD5:clay + DD5:CEC + PPT:clay + PPT:CEC + DD5²:clay + DD5²:CEC + PPT²:clay + PPT²:CEC + (1 | PLACE)"
+"5","lgrowth_rate ~ ldbh + DD5 + ldbh² + CEC + clay + CEC² + NCI_conifer + NCI_intra + NCI_deciduous + Shading + DD5:NCI_conifer + DD5:NCI_intra + DD5:NCI_deciduous + CEC:NCI_conifer + CEC:NCI_intra + CEC:NCI_deciduous + clay:NCI_conifer + clay:NCI_intra + clay:NCI_deciduous + CEC²:NCI_conifer + CEC²:NCI_intra + CEC²:NCI_deciduous + (1 | PLACE)"
+"6","lgrowth_rate ~ ldbh + ldbh² + pH + clay + CEC + (1 | PLACE)"
+"7","lgrowth_rate ~ ldbh + TAVE + CMI + ldbh² + TAVE² + NCI_conifer + NCI_intra + NCI_deciduous + Shading + (1 | PLACE)"
