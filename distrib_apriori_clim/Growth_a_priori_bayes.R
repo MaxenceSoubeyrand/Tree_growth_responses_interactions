@@ -4,7 +4,6 @@
 #-Compute distribution a posteriori of climate variables, it will be a priori distribution of the main model
 
 rm(list=ls())
-setwd("~/PhD/chap2/Tree_growth_responses_interactions/distrib_apriori_clim")
 
 library(tidyverse)
 library(quantreg)
