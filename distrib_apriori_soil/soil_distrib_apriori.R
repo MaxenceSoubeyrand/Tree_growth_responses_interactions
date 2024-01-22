@@ -4,8 +4,6 @@
 #-Compute distribution a posteriori of soil variables, it will be a priori distribution of the main model
 rm(list=ls())
 
-setwd("~/PhD/chap2/Tree_growth_responses_interactions/distrib_apriori_soil")
-
 library(tidyverse)
 library(quantreg)
 library(brms)
