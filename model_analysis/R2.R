@@ -1,6 +1,5 @@
 rm(list=ls())
 
-setwd("~/PhD/Chap2/model_analysis")
 library(tidyverse)
 theme_set(theme_bw())
 library(brms)

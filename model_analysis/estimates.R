@@ -1,7 +1,7 @@
 #Figure 3, raw estimates of dbh, shading and competition
 rm(list=ls())
 
-setwd("~/PhD/Chap2/Tree_growth_responses_interactions/model_analysis")
+
 library(tidyverse)
 theme_set(theme_bw())
 library(brms)
