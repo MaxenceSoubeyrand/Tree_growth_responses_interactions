@@ -1,7 +1,6 @@
 #Script that model tree growth as a relation to DHP, soils, climate, competition and interactions, for each species.
 rm(list=ls())
 
-setwd("~/PhD/Chap2/Tree_growth_responses_interactions/model")
 library(tidyverse)
 library(brms)
 
@@ -108,9 +107,9 @@ for(sp in unique(growth$species)){ #sp="Balsam_fir"
     if(any(str_detect(full_prior$coef, ":"))) full_prior[str_detect(full_prior$coef, ":"),]$ub <- NA
     
     #Create the formula
-    effect <- paste(full_prior$coef[-length(full_prior$coef)], collapse = " + ") #On enlève tout ce qui vient du random effect
+    effect <- paste(full_prior$coef[-length(full_prior$coef)], collapse = " + ") #We remove everything from the random effect
     
-    formula <- paste0("lgrowth_rate ~", effect, "+ (1 | PLACE)") #et on rajoute les effets aléatoires
+    formula <- paste0("lgrowth_rate ~", effect, "+ (1 | PLACE)") #and add random effects
     formula <- str_replace_all(formula, "IldbhE2", "I(ldbh^2)")
     formula <- str_replace_all(formula, "ITAVEE2", "I(TAVE^2)")
     formula <- str_replace_all(formula, "IPPTE2", "I(PPT^2)")
@@ -134,7 +133,7 @@ for(sp in unique(growth$species)){ #sp="Balsam_fir"
   }
   
   #test a model without random effect of the full model
-  formula <- bf(str_remove(as.character(formula)[1], pattern="\\+ \\(1 \\| PLACE\\)")) #on enlève l'effet aléatoire de la formule
+  formula <- bf(str_remove(as.character(formula)[1], pattern="\\+ \\(1 \\| PLACE\\)")) #we remove the random effect from the formula
   full_prior <- full_prior[-nrow(full_prior),]
   
   br <- brm(formula, 

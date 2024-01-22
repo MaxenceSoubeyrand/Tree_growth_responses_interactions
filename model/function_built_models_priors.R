@@ -1,6 +1,6 @@
-#Il faut tout les modèles que je vais tester
+#I need all the models I'm going to test
 
-#Toutes les interactions d'une chaine de caractère: variables
+#All string interactions: variables
 inter <- function(variable){
   int <- apply(t(combn(variable, 2)), 1, paste, collapse=":")
   #on enlève shad des interactions
@@ -9,9 +9,7 @@ inter <- function(variable){
 }
 
 model <- function(clim=clim, sol=sol, NCI=NCI){
-  #Dabord j'ai besoin de toutes les variables et les possibles interactions
-  
-  #En bloc
+  #Blocks
   var <- c("clim", "sol", "comp", "shad")
   
   
@@ -54,7 +52,7 @@ model <- function(clim=clim, sol=sol, NCI=NCI){
   
   models=list()
   for(l in 1:nrow(b)){
-    #effets simples
+    #Simple effect
     var_no_int <- colnames(b[l,])[as.logical(b[l,])][!str_detect(colnames(b[l,])[as.logical(b[l,])], pattern =":")]
     
     var_no_int2 <- NULL
@@ -63,7 +61,7 @@ model <- function(clim=clim, sol=sol, NCI=NCI){
       var_no_int2 <- c(var_no_int2, var_decomp[[i]])
     }
     
-    #On doit rajouter les interactions
+    #Adding interactions
     var_int <- colnames(b[l,])[as.logical(b[l,])][str_detect(colnames(b[l,])[as.logical(b[l,])], pattern =":")]
     
     var_int2= NULL
@@ -94,7 +92,7 @@ model <- function(clim=clim, sol=sol, NCI=NCI){
     }
     
     
-    variable_full <- c("ldbh", "IldbhE2", var_no_int2, unique(var_int2)) #on concatène ni inter et inter, et on rajoute les effets qui sont toujours présent
+    variable_full <- c("ldbh", "IldbhE2", var_no_int2, unique(var_int2)) #we concatenate inter, and add the effects that are always present
     
     models[[l]] <- variable_full
     
@@ -103,9 +101,9 @@ model <- function(clim=clim, sol=sol, NCI=NCI){
   return(models)
 }
 
-#Créer les lignes pour les distributions a priori
-create_prior <- function(d){ #rentrer d avec colonne ESS, Estimate, variable
-  prior <- eval(call("prior", call("normal", d[1,]$Estimate, d[1,]$sd), coef=d[1,]$variable)) #On initie la première ligne puis on boucle sur le reste
+#Create lines for a priori distributions
+create_prior <- function(d){ #enter d with column ESS, Estimate, variable
+  prior <- eval(call("prior", call("normal", d[1,]$Estimate, d[1,]$sd), coef=d[1,]$variable)) #Initiate the first line, then loop over the rest
   if(nrow(d)>1){
     for(i in 2:nrow(d)){
       prior <- c(prior, eval(call("prior", call("normal", d[i,]$Estimate, d[i,]$sd), coef=d[i,]$variable)))
